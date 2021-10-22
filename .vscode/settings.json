@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "dichotomie.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "glouton.h": "c"
     }
 }
