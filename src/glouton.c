@@ -1,25 +1,56 @@
-int max(int a, int b)
-{
-    return (a > b) ? a : b;
-}
+/**
+ * @file glouton.c
+ * @author Pierre JANVIER
+ * @brief Fichier permettant de réaliser un algorithme glouton 
+ * @version 1.0
+ * @date 2021-10-23
+ * @copyright Copyright (c) 2021
+ */
 
-int knapSack(int poidsMax, int poids[], int prix[], int tabsize)
+#include <stdio.h>
+#include <stdlib.h>
+#include <../include/glouton.h>
+
+/**
+ * @brief Tri d'un tableau avec la méthode du sac à dos
+ * @param g 
+ * @param tabsize 
+ */
+void triGlouton(Glouton g[], int tabsize)
 {
-    int K[tabsize + 1][poidsMax + 1];
-    for (int i = 0; i <= tabsize; i++)
+    Glouton temp;
+    for (int i = 0; i < tabsize - 1; i++)
     {
-        for (int w = 0; w <= poidsMax; w++)
+        for (int j = i + 1; j < tabsize; j++)
         {
-            if (i == 0 || w == 0)
-                K[i][w] = 0;
-            else if (poids[i - 1] <= w)
-                K[i][w] = max(
-                    prix[i - 1] + K[i - 1][w - poids[i - 1]],
-                    K[i - 1][w]);
-            else
-                K[i][w] = K[i - 1][w];
+            if (g[i].value / g[i].weight <= g[j].value / g[j].weight)
+            {
+                temp.weight = g[i].weight;
+                temp.value = g[i].value;
+                g[i] = g[j];
+                g[j] = temp;
+            }
         }
     }
+}
 
-    return K[tabsize][poidsMax];
+/**
+ * @brief Détermine le poids du sac à dos en fonction de sa valeur maximale et des différents objets
+ * @param g 
+ * @param tabsize 
+ * @param maxWeight 
+ * @return float 
+ */
+float findGlouton(Glouton g[], int tabsize, int maxWeight)
+{
+    float totalValue = 0;
+    for (int i = 0; i < tabsize; ++i)
+    {
+        if (g[i].weight <= maxWeight)
+        {
+            maxWeight -= g[i].weight;
+            totalValue += g[i].weight;
+        }
+    }
+    return totalValue;
 }

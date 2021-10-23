@@ -1,25 +1,17 @@
-
 /**
- * glouton algo 
- * @param a test value a
- * @param b test value b 
- * @return return value max between a and b
+ * @file glouton.h
+ * @author Pierre JANVIER
+ * @brief Header de glouton.c
+ * @version 1.0
+ * @date 2021-10-23
+ * @copyright Copyright (c) 2021
  */
-int knapSack(int W, int wt[], int val[], int n);
 
-/**
- * Recherche par dichotomie dans un tableau d'entiers
- * @param a test value a
- * @param b test value b 
- * @return return value max between a and b
- */
-int max(int a, int b);
-
-/**
- * Structure glont for glouton
- * **/
-struct Glouton
+typedef struct
 {
-    int poids;
-    int prix;
-};
+    int weight;
+    int value;
+} Glouton;
+
+void triGlouton(Glouton g[], int tabsize);
+float findGlouton(Glouton g[], int tabsize, int maxWeight);

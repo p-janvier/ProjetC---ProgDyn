@@ -2,6 +2,8 @@
     "files.associations": {
         "dichotomie.h": "c",
         "stdio.h": "c",
-        "glouton.h": "c"
-    }
+        "glouton.h": "c",
+        "type_traits": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
